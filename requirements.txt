@@ -8,3 +8,4 @@ werkzeug~=3.1.0
 python-decouple~=3.8.0
 Flask-Cors~=5.0.0
 flask_sqlalchemy~=3.1.1
+psycopg2~=2.9.5
