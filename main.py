@@ -25,6 +25,8 @@ cors = CORS(app, resources={
             }
 })
 
+print(env('FRONT_URL'))
+
 db.init_app(app)
 
 def page_not_found(error):
