@@ -15,7 +15,8 @@ if env('PRODUCTION', default=False):
     app.config.from_object(con['production'])
 else:
     app.config.from_object(con['development'])
-print(env('FRONT_URL'))
+
+
 cors = CORS(app, resources={
             r'/api/v1/*': {
                 'origins': env('FRONT_URL'),
@@ -23,6 +24,8 @@ cors = CORS(app, resources={
                 'allow_headers': ['Authorization', 'Accept', 'Content-Type']
             }
 })
+
+db.init_app(app)
 
 def page_not_found(error):
     return '<h1>Page not found<h1>', 404
