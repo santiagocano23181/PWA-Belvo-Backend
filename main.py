@@ -1,5 +1,5 @@
 #Libs
-from flask import request, jsonify, session, Flask
+from flask import request, jsonify, session, Flask, redirect
 from decouple import config as env
 from config import config as con
 from flask_cors import CORS
@@ -79,6 +79,11 @@ def block_redirect_for_options():
     print(request.headers)
     if request.method == 'OPTIONS':
         return '', 204
+
+@app.before_request
+def force_https():
+    if not request.is_secure:
+        return redirect(request.url.replace("http://", "https://"))
 
 @app.after_request
 def after_request(response):
