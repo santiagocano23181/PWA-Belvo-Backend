@@ -64,10 +64,11 @@ def session_middleware():
 @app.before_request
 def audit_middleware():
     auth = request.headers.get('Authorization')
+    token = auth.split(" ")
     method = request.method
     if method != 'OPTIONS':
         if auth:
-            value = jwt.decode(auth, env('SECRET_KEY'),
+            value = jwt.decode(token, env('SECRET_KEY'),
                                algorithms=['HS256'])
             new_event = UserHistory.UserHistory(value['id'], f'{method} {request.path}')
             db.session.add(new_event)
