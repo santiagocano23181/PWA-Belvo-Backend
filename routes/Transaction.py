@@ -35,7 +35,6 @@ def list_banks(link: str, id: str):
         if response.status_code != 200 or len(response.json()['results']) == 0:
             break
         transactions += response.json()['results']
-        print(response.json()['results'])
         balance += reduce(get_balance, response.json()['results'])
         if response.json()['next'] is None:
             break
