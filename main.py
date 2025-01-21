@@ -51,9 +51,9 @@ def session_middleware():
     method = request.method
     if method != 'OPTIONS':
         auth = request.headers.get('Authorization')
-        token = auth.split(" ")[0]
+        token = auth.split(" ")[1]
         if auth:
-            value = jwt.decode(auth, env('SECRET_KEY'),
+            value = jwt.decode(token, env('SECRET_KEY'),
                                algorithms=['HS256'])
             session['Authorization'] = value['id']
         else:
@@ -67,6 +67,7 @@ def audit_middleware():
     method = request.method
     if method != 'OPTIONS':
         auth = request.headers.get('Authorization')
+        token = auth.split(" ")[1]
         if auth:
             value = jwt.decode(token, env('SECRET_KEY'),
                                algorithms=['HS256'])
