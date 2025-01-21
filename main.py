@@ -48,9 +48,9 @@ app.register_error_handler(404, page_not_found)
 
 @app.before_request
 def session_middleware():
-    auth = request.headers.get('Authorization')
     method = request.method
     if method != 'OPTIONS':
+        auth = request.headers.get('Authorization')
         if auth:
             value = jwt.decode(auth, env('SECRET_KEY'),
                                algorithms=['HS256'])
