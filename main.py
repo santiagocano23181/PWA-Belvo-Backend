@@ -20,7 +20,6 @@ else:
 cors = CORS(app, resources={
             r'/api/v1/*': {
                 'origins': env('FRONT_URL'),
-                'supports_credentials': True,
                 'allow_headers': ['Authorization', 'Accept', 'Content-Type']
             }
 })
