@@ -80,11 +80,6 @@ def block_redirect_for_options():
     if request.method == 'OPTIONS':
         return '', 204
 
-@app.before_request
-def force_https():
-    if not request.is_secure:
-        return redirect(request.url.replace("http://", "https://"))
-
 @app.after_request
 def after_request(response):
     # Establece los encabezados CORS
