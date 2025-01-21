@@ -25,8 +25,6 @@ cors = CORS(app, resources={
             }
 })
 
-print(env('FRONT_URL'))
-
 db.init_app(app)
 
 def page_not_found(error):
@@ -85,7 +83,7 @@ def block_redirect_for_options():
 @app.after_request
 def after_request(response):
     # Establece los encabezados CORS
-    response.headers['Access-Control-Allow-Origin'] = 'http://localhost:5173'
+    response.headers['Access-Control-Allow-Origin'] = env('FRONT_URL')
     response.headers['Access-Control-Allow-Methods'] = 'GET, POST, OPTIONS'
     response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization, Accept'
     response.headers['Access-Control-Allow-Credentials'] = 'true'
