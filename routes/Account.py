@@ -14,7 +14,7 @@ account = Blueprint('account', __name__)
 
 
 @account.route("/<string:bank_name>")
-def list_banks(bank_name: str):
+def list_accounts(bank_name: str):
     secret: str = config("SECRET_ID")
     password: str = config("SECRET_PASSWORD")
 

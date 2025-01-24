@@ -16,7 +16,7 @@ transaction = Blueprint('transaction', __name__)
 
 
 @transaction.route("/<string:link>/<string:id>")
-def list_banks(link: str, id: str):
+def list_transactions(link: str, id: str):
     secret: str = config("SECRET_ID")
     password: str = config("SECRET_PASSWORD")
 

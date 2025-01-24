@@ -78,7 +78,7 @@ def audit_middleware():
 
 @app.before_request
 def block_redirect_for_options():
-    # Evitar redirección para solicitudes OPTIONS
+    # Avoid redirection for OPTIONS
     if request.method == 'OPTIONS':
         return '', 204
 
